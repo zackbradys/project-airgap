@@ -4,9 +4,9 @@
 export DOMAIN=${DOMAIN}
 export TOKEN=${TOKEN}
 export vRKE2=${vRKE2}
-export CarbideRegistry=${CarbideRegistry}
-export CarbideUsername=${CarbideUsername}
-export CarbidePassword=${CarbidePassword}
+export Registry=${Registry}
+export RegistryUsername=${RegistryUsername}
+export RegistryPassword=${RegistryPassword}
 
 ### Apply System Settings
 cat << EOF >> /etc/sysctl.conf
@@ -90,7 +90,7 @@ server: https://$DOMAIN:9345
 token: $TOKEN
 tls-san:
   - $DOMAIN
-system-default-registry: $CarbideRegistry
+system-default-registry: $Registry
 EOF
 
 ### Configure RKE2 Audit Policy
@@ -161,6 +161,7 @@ plugins:
                      cis-operator-system,
                      fleet-default,
                      fleet-local,
+                     harbor-system,
                      ingress-nginx,
                      istio-system,
                      kube-node-lease,
@@ -172,18 +173,18 @@ plugins:
                      tigera-operator]
 EOF
 
-### Setup Carbide Registry
+### Setup Registry
 cat << EOF >> /etc/rancher/rke2/registries.yaml
 mirrors:
   docker.io:
     endpoint:
-      - "https://$CarbideRegistry"
+      - "https://$Registry"
 
 configs:
-  "$CarbideRegistry":
+  "$Registry":
     auth:
-      username: $CarbideUsername
-      password: $CarbidePassword
+      username: $RegistryUsername
+      password: $RegistryPassword
 EOF
 
 ### Download and Install RKE2 Server

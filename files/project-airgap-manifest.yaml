@@ -1,0 +1,34 @@
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Files
+metadata:
+  name: project-airgap-files
+spec:
+  files:
+    - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/rancher-cluster-templates-aws.sh
+      name: rancher-cluster-templates-aws.sh
+    - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/rancher-cluster-templates-values.yaml
+      name: rancher-cluster-templates-values.yaml
+    - path: https://releases.hashicorp.com/terraform-provider-aws/5.31.0/terraform-provider-aws_5.31.0_linux_amd64.zip
+      name: terraform-provider-aws_5.31.0_linux_amd64.zip
+    - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/terraform/aws-mgmt-cluster.tar.zst
+      name: aws-mgmt-cluster.tar.zst
+    - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/terraform/aws-s3-bucket.tar.zst
+      name: aws-s3-bucket.tar.zst
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Charts
+metadata:
+  name: project-airgap-charts
+spec:
+  charts:
+    - name: cluster-templates
+      repoURL: https://rancherfederal.github.io/rancher-cluster-templates
+      version: 0.4.2
+---
+# apiVersion: content.hauler.cattle.io/v1alpha1
+# kind: Images
+# metadata:
+#   name: project-airgap-images
+# spec:
+#   images:
+#     - name: test

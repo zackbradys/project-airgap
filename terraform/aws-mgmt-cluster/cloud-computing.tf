@@ -17,12 +17,10 @@ resource "aws_instance" "aws_ec2_instance_control" {
     vLonghorn        = "${var.vLonghorn}"
     vNeuVector       = "${var.vNeuVector}"
     vCertManager     = "${var.vCertManager}"
+    vHarbor          = "${var.vHarbor}"
     Registry         = "${var.Registry}"
     RegistryUsername = "${var.RegistryUsername}"
     RegistryPassword = "${var.RegistryPassword}"
-    AccessKey        = "${var.access_key}"
-    SecretKey        = "${var.secret_key}"
-    SessionToken     = "${var.session_token}"
   })
 
   tags = {

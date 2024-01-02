@@ -92,6 +92,12 @@ variable "vCertManager" {
   description = "(Optional) The Cert Manager Version to use for the clusters(s)."
 }
 
+variable "vHarbor" {
+  default     = "1.13.1"
+  type        = string
+  description = "(Optional) The Harbor Version to use for the clusters(s)."
+}
+
 ### Networking Variables
 variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"

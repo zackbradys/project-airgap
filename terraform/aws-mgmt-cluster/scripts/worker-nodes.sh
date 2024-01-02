@@ -4,9 +4,9 @@
 export DOMAIN=${DOMAIN}
 export TOKEN=${TOKEN}
 export vRKE2=${vRKE2}
-export CarbideRegistry=${CarbideRegistry}
-export CarbideUsername=${CarbideUsername}
-export CarbidePassword=${CarbidePassword}
+export Registry=${Registry}
+export RegistryUsername=${RegistryUsername}
+export RegistryPassword=${RegistryPassword}
 
 ### Apply System Settings
 cat << EOF >> /etc/sysctl.conf
@@ -69,21 +69,21 @@ kubelet-arg:
 - authorization-mode=Webhook
 server: https://$DOMAIN:9345
 token: $TOKEN
-system-default-registry: $CarbideRegistry
+system-default-registry: $Registry
 EOF
 
-### Setup Carbide Registry
+### Setup Registry
 cat << EOF >> /etc/rancher/rke2/registries.yaml
 mirrors:
   docker.io:
     endpoint:
-      - "https://$CarbideRegistry"
+      - "https://$Registry"
 
 configs:
-  "$CarbideRegistry":
+  "$Registry":
     auth:
-      username: $CarbideUsername
-      password: $CarbidePassword
+      username: $RegistryUsername
+      password: $RegistryPassword
 EOF
 
 ### Download and Install RKE2 Agent
