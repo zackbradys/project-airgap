@@ -4,8 +4,8 @@ metadata:
   name: project-airgap-files
 spec:
   files:
-    - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/rancher-cluster-templates-aws.sh
-      name: rancher-cluster-templates-aws.sh
+    - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/rancher-cluster-templates-aws.md
+      name: rancher-cluster-templates-aws.md
     - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/rancher-cluster-templates-values.yaml
       name: rancher-cluster-templates-values.yaml
     - path: https://releases.hashicorp.com/terraform-provider-aws/5.31.0/terraform-provider-aws_5.31.0_linux_amd64.zip
