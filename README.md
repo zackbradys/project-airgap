@@ -15,15 +15,11 @@ mkdir -p /opt/project-airgap
 cd /opt/project-airgap
 
 ### Fetch Rancher Airgap Hauler Tars
-curl -#OL https://rancher-airgap.s3.amazonaws.com/${vRancherAirgap}/hauler/hauler/rancher-airgap-hauler.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/${vRancherAirgap}/hauler/helm/rancher-airgap-helm.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/${vRancherAirgap}/hauler/cosign/rancher-airgap-cosign.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/${vRancherAirgap}/hauler/rke2/rancher-airgap-rke2.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/${vRancherAirgap}/hauler/rancher/rancher-airgap-rancher.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/${vRancherAirgap}/hauler/longhorn/rancher-airgap-longhorn.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/${vRancherAirgap}/hauler/neuvector/rancher-airgap-neuvector.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/${vRancherAirgap}/hauler/harbor/rancher-airgap-harbor.tar.zst
-
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.6.4/hauler/hauler/rancher-airgap-hauler.tar.zst
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.6.4/hauler/helm/rancher-airgap-helm.tar.zst
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.6.4/hauler/rke2/rancher-airgap-rke2.tar.zst
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.6.4/hauler/rancher/rancher-airgap-rancher.tar.zst
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.6.4/hauler/harbor/rancher-airgap-harbor.tar.zst
 
 ### Fetch Project Airgap Components
 curl -#OL https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/project-airgap-manifest.yaml

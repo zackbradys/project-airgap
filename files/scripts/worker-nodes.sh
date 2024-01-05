@@ -1,12 +1,12 @@
 #!/bin/bash
 
 ### Set Variables
-export DOMAIN=${DOMAIN}
-export TOKEN=${TOKEN}
-export vRKE2=${vRKE2}
-export Registry=${Registry}
-export RegistryUsername=${RegistryUsername}
-export RegistryPassword=${RegistryPassword}
+export DOMAIN=
+export TOKEN=exampleRKE2token
+export vRKE2=v1.26.11+rke2r1
+export Registry=
+export RegistryUsername=
+export RegistryPassword=
 
 ### Apply System Settings
 cat << EOF >> /etc/sysctl.conf

@@ -1,17 +1,17 @@
 #!/bin/bash
 
 ### Set Variables
-export DOMAIN=${DOMAIN}
-export TOKEN=${TOKEN}
-export vRKE2=${vRKE2}
-export vRancher=${vRancher}
-export vLonghorn=${vLonghorn}
-export vNeuVector=${vNeuVector}
-export vCertManager=${vCertManager}
-export vHarbor=${vHarbor}
-export Registry=${Registry}
-export RegistryUsername=${RegistryUsername}
-export RegistryPassword=${RegistryPassword}
+export DOMAIN=
+export TOKEN=exampleRKE2token
+export vRKE2=v1.26.11+rke2r1
+export vRancher=2.7.9
+export vLonghorn=1.5.3
+export vNeuVector=2.6.6
+export vCertManager=1.13.3
+export vHarbor=1.13.1
+export Registry=
+export RegistryUsername=
+export RegistryPassword=
 
 ### Apply System Settings
 cat << EOF >> /etc/sysctl.conf
@@ -337,10 +337,10 @@ kubectl create namespace harbor-system
 
 kubectl get secret tls-certs -n cert-manager -o yaml | sed 's/namespace: .*/namespace: harbor-system/' | kubectl apply -f -
 
-helm upgrade -i harbor harbor/harbor -n harbor-system --set expose.tls.certSource=secret --set expose.tls.secret.secretName=tls-certs --set expose.tls.auto.commonName=harbor.$DOMAIN --set expose.ingress.hosts.core=harbor.$DOMAIN --set persistence.enabled=true --set persistence.persistentVolumeClaim.registry.size=20Gi --set trivy.enabled=false --set harborAdminPassword=Pa22word --set externalURL=https://harbor.$DOMAIN --set portal.image.repository=$Registry/goharbor/harbor-portal --set core.image.repository=$Registry/goharbor/harbor-core --set jobservice.image.repository=$Registry/goharbor/harbor-jobservice --set registry.registry.image.repository=$Registry/goharbor/registry-photon --set registry.controller.image.repository=$Registry/goharbor/harbor-registryctl --set database.internal.image.repository=$Registry/goharbor/harbor-db --set redis.internal.image.repository=$Registry/goharbor/redis-photon
+helm upgrade -i harbor harbor/harbor -n harbor-system --version=$vHarbor --set expose.tls.certSource=secret --set expose.tls.secret.secretName=tls-certs --set expose.tls.auto.commonName=harbor.$DOMAIN --set expose.ingress.hosts.core=harbor.$DOMAIN --set persistence.enabled=true --set persistence.persistentVolumeClaim.registry.size=20Gi --set trivy.enabled=false --set harborAdminPassword=Pa22word --set externalURL=https://harbor.$DOMAIN --set portal.image.repository=$Registry/goharbor/harbor-portal --set core.image.repository=$Registry/goharbor/harbor-core --set jobservice.image.repository=$Registry/goharbor/harbor-jobservice --set registry.registry.image.repository=$Registry/goharbor/registry-photon --set registry.controller.image.repository=$Registry/goharbor/harbor-registryctl --set database.internal.image.repository=$Registry/goharbor/harbor-db --set redis.internal.image.repository=$Registry/goharbor/redis-photon
 
 ### Add Classification Banners
 kubectl apply -f https://raw.githubusercontent.com/zackbradys/code-templates/main/k8s/yamls/rancher-banner-ufouo.yaml
 
 ### Verify End of Script
-date >> /opt/rancher/COMPLETED
+date >> /opt/rancher/COMPLETEDh
