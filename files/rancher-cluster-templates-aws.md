@@ -124,3 +124,19 @@ aws ec2 describe-instances --filters Name=instance-state-name,Values=running --q
 # Complete this for each applicable EC2 Instance
 aws ec2 associate-iam-instance-profile --instance-id YourInstanceID --iam-instance-profile Name=aws-rgs-rancher-mgmt-profile
 ```
+
+```bash
+### AWS Test Commands
+### Can the EC2 instance fully introspect the operating parameters of its environment?
+### SSM
+aws ssm get-parameters-by-path --output json --path /aws/service/global-infrastructure/current-region
+### IMDS
+curl http://169.254.169.254/latest/meta-data/placement/region
+curl http://169.254.169.254/latest/meta-data/services/domain
+curl http://169.254.169.254/latest/meta-data/services/partition
+
+### AWS SDK will be looking here for instance profile credentials and caching them
+### (expiration effectively results in a cache miss the way these are used IIRC)
+curl http://169.254.169.254/latest/dynamic/instance-identity/signature
+curl http://169.254.169.254/latest/dynamic/instance-identity/document
+```

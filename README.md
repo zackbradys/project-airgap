@@ -15,16 +15,17 @@ mkdir -p /opt/project-airgap
 cd /opt/project-airgap
 
 ### Fetch Rancher Airgap Hauler Tars
-curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.0/hauler/hauler/rancher-airgap-hauler.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.0/hauler/helm/rancher-airgap-helm.tar.zst
-#curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.0/hauler/rke2/rancher-airgap-rke2.tar.zst
-#curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.0/hauler/rancher/rancher-airgap-rancher.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.0/hauler/harbor/rancher-airgap-harbor.tar.zst
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.1/hauler/hauler/rancher-airgap-hauler.yaml
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.1/hauler/helm/rancher-airgap-helm.yaml
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.1/hauler/harbor/rancher-airgap-harbor.yaml
 
 ### Fetch Project Airgap Components
-curl -#OL https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/project-airgap-manifest.yaml
+curl -#OL https://raw.githubusercontent.com/zackbradys/project-airgap/main/hauler/project-airgap-manifest.yaml
 
 ### Sync Manifests to Hauler Store
+hauler store sync -f rancher-airgap-hauler.yaml
+hauler store sync -f rancher-airgap-helm.yaml
+hauler store sync -f rancher-airgap-harbor.yaml
 hauler store sync -f project-airgap-manifest.yaml
 
 ### Verify Hauler Store
