@@ -3,7 +3,7 @@
 ### Set Variables
 export DOMAIN=
 export TOKEN=exampleRKE2token
-export vRKE2=v1.26.11+rke2r1
+export vRKE2=v1.26.12+rke2r1
 export Registry=
 export RegistryUsername=
 export RegistryPassword=

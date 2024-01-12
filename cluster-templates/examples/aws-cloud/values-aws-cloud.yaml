@@ -130,7 +130,7 @@ nodepools:
     keypairName: ''
     securityGroupReadonly: false
     sshKeyContents: ''
-    subnetId: subnet-023c444cd94847be2 # required (example: subnet-123456789)
+    subnetId: subnet-0595c49b3879e7cc7 # required (example: subnet-123456789)
     zone: a # required (example: a)
     monitoring: false
     usePrivateAddress: true
@@ -142,7 +142,7 @@ nodepools:
     rootSize: 128
     sshUser: ec2-user
     volumeType: gp3
-    vpcId: vpc-0d08cfb0972c55aa6 # required (example: vpc-123456789)
+    vpcId: vpc-0a888c219720c8d8d # required (example: vpc-123456789)
     useEbsOptimizedInstance: false
     userData: |
       #cloud-config
@@ -307,7 +307,7 @@ nodepools:
     keypairName: ''
     securityGroupReadonly: false
     sshKeyContents: ''
-    subnetId: subnet-023c444cd94847be2 # required (example: subnet-123456789)
+    subnetId: subnet-0595c49b3879e7cc7 # required (example: subnet-123456789)
     zone: a # required (example: a)
     monitoring: false
     usePrivateAddress: true
@@ -319,7 +319,7 @@ nodepools:
     rootSize: 128
     sshUser: ec2-user
     volumeType: gp3
-    vpcId: vpc-0d08cfb0972c55aa6 # required (example: vpc-123456789)
+    vpcId: vpc-0a888c219720c8d8d # required (example: vpc-123456789)
     useEbsOptimizedInstance: false
     userData: |
       #cloud-config

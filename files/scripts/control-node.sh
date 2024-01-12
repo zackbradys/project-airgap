@@ -3,7 +3,7 @@
 ### Set Variables
 export DOMAIN=
 export TOKEN=exampleRKE2token
-export vRKE2=v1.26.11+rke2r1
+export vRKE2=v1.26.12+rke2r1
 export vRancher=2.7.9
 export vLonghorn=1.5.3
 export vNeuVector=2.6.6
@@ -251,6 +251,31 @@ helm upgrade -i cert-manager jetstack/cert-manager -n cert-manager --version=$vC
 sleep 15
 
 ### Configure Cert Manager
+#kubectl apply -f - << EOF
+#apiVersion: cert-manager.io/v1
+#kind: ClusterIssuer
+#metadata:
+#  name: selfsigned-issuer
+#spec:
+#  selfSigned: {}
+#---
+#apiVersion: cert-manager.io/v1
+#kind: Certificate
+#metadata:
+#  name: tls-certs
+#  namespace: cert-manager
+#spec:
+#  issuerRef:
+#    name: private-ca-issuer
+#    kind: selfsigned-issuer
+#  secretName: tls-certs
+#  commonName: "$DOMAIN"
+#  dnsNames:
+#  - "$DOMAIN"
+#  - "*.$DOMAIN"
+#EOF
+
+### Configure Cert Manager
 kubectl apply -f - << EOF
 apiVersion: v1
 kind: Secret
@@ -289,10 +314,10 @@ EOF
 sleep 300
 
 ### Export Cert Manager Certs
-mkdir -p /opt/rancher/certs
-cd /opt/rancher/certs
-kubectl get secret tls-certs -n cert-manager -o json -o=jsonpath="{.data.tls\.crt}" | base64 -d > tls.pem
-kubectl get secret tls-certs -n cert-manager -o json -o=jsonpath="{.data.tls\.key}" | base64 -d > tls.key
+#mkdir -p /opt/rancher/certs
+#cd /opt/rancher/certs
+#kubectl get secret tls-certs -n cert-manager -o json -o=jsonpath="{.data.tls\.crt}" | base64 -d > tls.pem
+#kubectl get secret tls-certs -n cert-manager -o json -o=jsonpath="{.data.tls\.key}" | base64 -d > tls.key
 
 ### Install Rancher
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable

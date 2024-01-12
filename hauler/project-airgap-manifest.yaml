@@ -8,6 +8,12 @@ spec:
       name: rancher-cluster-templates-aws.md
     - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/rancher-cluster-templates-values.yaml
       name: rancher-cluster-templates-values.yaml
+    - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/scripts/control-node.sh
+      name: control-node.sh
+    - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/scripts/control-nodes.sh
+      name: control-nodes.sh
+    - path: https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/scripts/worker-nodes.sh
+      name: worker-nodes.sh
 ---
 apiVersion: content.hauler.cattle.io/v1alpha1
 kind: Charts

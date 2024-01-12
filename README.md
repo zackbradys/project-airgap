@@ -15,11 +15,11 @@ mkdir -p /opt/project-airgap
 cd /opt/project-airgap
 
 ### Fetch Rancher Airgap Hauler Tars
-curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.6.4/hauler/hauler/rancher-airgap-hauler.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.6.4/hauler/helm/rancher-airgap-helm.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.6.4/hauler/rke2/rancher-airgap-rke2.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.6.4/hauler/rancher/rancher-airgap-rancher.tar.zst
-curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.6.4/hauler/harbor/rancher-airgap-harbor.tar.zst
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.0/hauler/hauler/rancher-airgap-hauler.tar.zst
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.0/hauler/helm/rancher-airgap-helm.tar.zst
+#curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.0/hauler/rke2/rancher-airgap-rke2.tar.zst
+#curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.0/hauler/rancher/rancher-airgap-rancher.tar.zst
+curl -#OL https://rancher-airgap.s3.amazonaws.com/v1.7.0/hauler/harbor/rancher-airgap-harbor.tar.zst
 
 ### Fetch Project Airgap Components
 curl -#OL https://raw.githubusercontent.com/zackbradys/project-airgap/main/files/project-airgap-manifest.yaml
@@ -34,14 +34,14 @@ hauler store info
 hauler store save --filename project-airgap.tar.zst
 ```
 
-#### Step 2: Across the Airgap
+#### Step 2: Move TARs Over the Airgap
 
 ```bash
-# steps here
+### Move the TARs Over the Airgap
 ```
 
 ### Step 3: Airgapped Build Server
 
 ```bash
-# steps here
+### steps here
 ```
