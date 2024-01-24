@@ -110,7 +110,7 @@ nodepools:
     # accessKey: # only needed if not using cloudCredentialSecretName
     # secretKey: # only needed if not using cloudCredentialSecretName
     # sessionToken: # only needed if not using cloudCredentialSecretName
-    ami: ami-079db87dc4c10ac91 # required (example: ami-123456789)
+    ami: ami-0a3c3a20c09d6f377 # required (example: ami-123456789)
     # blockDurationMinutes: 0
     deviceName: /dev/sda1
     encryptEbsVolume: true
@@ -288,7 +288,7 @@ nodepools:
     # accessKey: # only needed if not using cloudCredentialSecretName
     # secretKey: # only needed if not using cloudCredentialSecretName
     # sessionToken: # only needed if not using cloudCredentialSecretName
-    ami: ami-079db87dc4c10ac91 # required (example: ami-123456789)
+    ami: ami-0a3c3a20c09d6f377 # required (example: ami-123456789)
     deviceName: /dev/sda1
     encryptEbsVolume: true
     # kmsKey: ''
