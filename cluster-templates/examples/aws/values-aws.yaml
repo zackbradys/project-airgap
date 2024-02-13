@@ -98,6 +98,7 @@ cluster:
 # node and nodepool(s) values
 nodepools:
   - name: control-plane-nodes
+    # displayName: cp-nodes
     quantity: 1
     etcd: true
     controlplane: true
@@ -105,15 +106,27 @@ nodepools:
     # labels:
       # key: value
     # taints:
+      # effect: value
       # key: value
+      # value: value
     paused: false
+    drainBeforeDelete: true
+    drainBeforeDeleteTimeout: 30s
+    unhealthyNodeTimeout: 60s
+    # machineDeploymentLabels:
+      # key: value
+    # machineDeploymentAnnotations:
+      # key: value
+    # rollingUpdate:
+      # maxUnavailable: 1
+      # maxSurge: 1
     # accessKey: # only needed if not using cloudCredentialSecretName
     # secretKey: # only needed if not using cloudCredentialSecretName
     # sessionToken: # only needed if not using cloudCredentialSecretName
     ami: ami-0a3c3a20c09d6f377 # required (example: ami-123456789)
     # blockDurationMinutes: 0
     deviceName: /dev/sda1
-    encryptEbsVolume: true
+    encryptEbsVolume: false
     # kmsKey: ''
     endpoint: ''
     # httpEndpoint: ''
@@ -130,7 +143,7 @@ nodepools:
     keypairName: ''
     securityGroupReadonly: false
     sshKeyContents: ''
-    subnetId: subnet-0595c49b3879e7cc7 # required (example: subnet-123456789)
+    subnetId: subnet-05a19e0d0ef20ce2c # required (example: subnet-123456789)
     zone: a # required (example: a)
     monitoring: false
     usePrivateAddress: true
@@ -142,7 +155,7 @@ nodepools:
     rootSize: 128
     sshUser: ec2-user
     volumeType: gp3
-    vpcId: vpc-0a888c219720c8d8d # required (example: vpc-123456789)
+    vpcId: vpc-05067cd48b45a2f8f # required (example: vpc-123456789)
     useEbsOptimizedInstance: false
     userData: |
       #cloud-config
@@ -276,6 +289,7 @@ nodepools:
       - sudo mkdir -p /opt/rke2-artifacts/ /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
       - sudo useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U
   - name: worker-nodes
+    # displayName: wk-nodes
     quantity: 1
     etcd: false
     controlplane: false
@@ -283,14 +297,26 @@ nodepools:
     # labels:
       # key: value
     # taints:
+      # effect: value
       # key: value
+      # value: value
     paused: false
+    drainBeforeDelete: true
+    drainBeforeDeleteTimeout: 30s
+    unhealthyNodeTimeout: 60s
+    # machineDeploymentLabels:
+      # key: value
+    # machineDeploymentAnnotations:
+      # key: value
+    # rollingUpdate:
+      # maxUnavailable: 1
+      # maxSurge: 1
     # accessKey: # only needed if not using cloudCredentialSecretName
     # secretKey: # only needed if not using cloudCredentialSecretName
     # sessionToken: # only needed if not using cloudCredentialSecretName
     ami: ami-0a3c3a20c09d6f377 # required (example: ami-123456789)
     deviceName: /dev/sda1
-    encryptEbsVolume: true
+    encryptEbsVolume: false
     # kmsKey: ''
     endpoint: ''
     # httpEndpoint: ''
@@ -307,7 +333,7 @@ nodepools:
     keypairName: ''
     securityGroupReadonly: false
     sshKeyContents: ''
-    subnetId: subnet-0595c49b3879e7cc7 # required (example: subnet-123456789)
+    subnetId: subnet-05a19e0d0ef20ce2c # required (example: subnet-123456789)
     zone: a # required (example: a)
     monitoring: false
     usePrivateAddress: true
@@ -319,7 +345,7 @@ nodepools:
     rootSize: 128
     sshUser: ec2-user
     volumeType: gp3
-    vpcId: vpc-0a888c219720c8d8d # required (example: vpc-123456789)
+    vpcId: vpc-05067cd48b45a2f8f # required (example: vpc-123456789)
     useEbsOptimizedInstance: false
     userData: |
       #cloud-config

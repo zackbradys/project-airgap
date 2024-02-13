@@ -3,12 +3,12 @@
 ### Set Variables
 export DOMAIN=
 export TOKEN=exampleRKE2token
-export vRKE2=v1.26.12+rke2r1
-export vRancher=2.7.9
-export vLonghorn=1.5.3
-export vNeuVector=2.6.6
-export vCertManager=1.13.3
-export vHarbor=1.13.1
+export vRKE2=v1.26.13+rke2r1
+export vRancher=2.8.2
+export vLonghorn=1.6.0
+export vNeuVector=2.7.3
+export vCertManager=1.14.2
+export vHarbor=1.14.0
 export Registry=
 export RegistryUsername=
 export RegistryPassword=
@@ -251,13 +251,49 @@ helm upgrade -i cert-manager jetstack/cert-manager -n cert-manager --version=$vC
 sleep 15
 
 ### Configure Cert Manager
+kubectl apply -f - << EOF
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned-issuer
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-certs
+  namespace: cert-manager
+spec:
+  issuerRef:
+    name: selfsigned-issuer
+    kind: ClusterIssuer
+  secretName: tls-certs
+  commonName: "$DOMAIN"
+  dnsNames:
+  - "$DOMAIN"
+  - "*.$DOMAIN"
+EOF
+
+### Configure Cert Manager
 #kubectl apply -f - << EOF
+#apiVersion: v1
+#kind: Secret
+#metadata:
+# name: private-ca-certs
+# namespace: cert-manager
+#data:
+# tls.crt: # base64 encoded CA certificate
+# tls.key: # base64 encoded CA private key
+#---
 #apiVersion: cert-manager.io/v1
 #kind: ClusterIssuer
 #metadata:
-#  name: selfsigned-issuer
+#  name: private-ca-issuer
+#  namespace: cert-manager
 #spec:
-#  selfSigned: {}
+#  ca:
+#    secretName: private-ca-certs
 #---
 #apiVersion: cert-manager.io/v1
 #kind: Certificate
@@ -267,51 +303,13 @@ sleep 15
 #spec:
 #  issuerRef:
 #    name: private-ca-issuer
-#    kind: selfsigned-issuer
+#    kind: ClusterIssuer
 #  secretName: tls-certs
 #  commonName: "$DOMAIN"
 #  dnsNames:
 #  - "$DOMAIN"
 #  - "*.$DOMAIN"
 #EOF
-
-### Configure Cert Manager
-kubectl apply -f - << EOF
-apiVersion: v1
-kind: Secret
-metadata:
- name: private-ca-certs
- namespace: cert-manager
-data:
- tls.crt: # base64 encoded CA certificate
- tls.key: # base64 encoded CA private key
----
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
-  name: private-ca-issuer
-  namespace: cert-manager
-spec:
-  ca:
-    secretName: private-ca-certs
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: tls-certs
-  namespace: cert-manager
-spec:
-  issuerRef:
-    name: private-ca-issuer
-    kind: ClusterIssuer
-  secretName: tls-certs
-  commonName: "$DOMAIN"
-  dnsNames:
-  - "$DOMAIN"
-  - "*.$DOMAIN"
-EOF
-
-sleep 300
 
 ### Export Cert Manager Certs
 #mkdir -p /opt/rancher/certs
