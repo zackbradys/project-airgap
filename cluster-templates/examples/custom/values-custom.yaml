@@ -65,6 +65,8 @@ cluster:
         - name: docker.io
           endpoints:
             - rgcrprod.azurecr.us
+      # rewrite:
+         # "^rancher/(.*)": "mirrorproject/rancher-images/$1"
     upgradeStrategy:
       controlPlaneConcurrency: 10%
       controlPlaneDrainOptions:

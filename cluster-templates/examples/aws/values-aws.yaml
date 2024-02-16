@@ -20,7 +20,7 @@ cluster:
   name: rke2-cluster-aws
   config:
     systemDefaultRegistry: rgcrprod.azurecr.us # default registry
-    kubernetesVersion: v1.26.12+rke2r1 # https://github.com/rancher/rke2/releases
+    kubernetesVersion: v1.26.13+rke2r1 # https://github.com/rancher/rke2/releases
     localClusterAuthEndpoint:
       enabled: false
     # agentEnvVars:
@@ -71,6 +71,8 @@ cluster:
         - name: docker.io
           endpoints:
             - rgcrprod.azurecr.us
+      # rewrite:
+         # "^rancher/(.*)": "mirrorproject/rancher-images/$1"
     upgradeStrategy:
       controlPlaneConcurrency: 10%
       controlPlaneDrainOptions:
@@ -110,9 +112,9 @@ nodepools:
       # key: value
       # value: value
     paused: false
-    drainBeforeDelete: true
-    drainBeforeDeleteTimeout: 30s
-    unhealthyNodeTimeout: 60s
+    # drainBeforeDelete: true
+    # drainBeforeDeleteTimeout: 30s
+    # unhealthyNodeTimeout: 60s
     # machineDeploymentLabels:
       # key: value
     # machineDeploymentAnnotations:
@@ -120,6 +122,7 @@ nodepools:
     # rollingUpdate:
       # maxUnavailable: 1
       # maxSurge: 1
+    # cloud provider values here
     # accessKey: # only needed if not using cloudCredentialSecretName
     # secretKey: # only needed if not using cloudCredentialSecretName
     # sessionToken: # only needed if not using cloudCredentialSecretName
@@ -301,9 +304,9 @@ nodepools:
       # key: value
       # value: value
     paused: false
-    drainBeforeDelete: true
-    drainBeforeDeleteTimeout: 30s
-    unhealthyNodeTimeout: 60s
+    # drainBeforeDelete: true
+    # drainBeforeDeleteTimeout: 30s
+    # unhealthyNodeTimeout: 60s
     # machineDeploymentLabels:
       # key: value
     # machineDeploymentAnnotations:
@@ -311,6 +314,7 @@ nodepools:
     # rollingUpdate:
       # maxUnavailable: 1
       # maxSurge: 1
+    # cloud provider values here
     # accessKey: # only needed if not using cloudCredentialSecretName
     # secretKey: # only needed if not using cloudCredentialSecretName
     # sessionToken: # only needed if not using cloudCredentialSecretName

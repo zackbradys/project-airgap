@@ -71,6 +71,8 @@ cluster:
         - name: docker.io
           endpoints:
             - rgcrprod.azurecr.us
+      # rewrite:
+         # "^rancher/(.*)": "mirrorproject/rancher-images/$1"
     upgradeStrategy:
       controlPlaneConcurrency: 10%
       controlPlaneDrainOptions:
@@ -98,6 +100,7 @@ cluster:
 # node and nodepool(s) values
 nodepools:
   - name: control-plane-nodes
+    # displayName: cp-nodes
     quantity: 1
     etcd: true
     controlplane: true
@@ -105,8 +108,21 @@ nodepools:
     # labels:
       # key: value
     # taints:
+      # effect: value
       # key: value
+      # value: value
     paused: false
+    # drainBeforeDelete: true
+    # drainBeforeDeleteTimeout: 30s
+    # unhealthyNodeTimeout: 60s
+    # machineDeploymentLabels:
+      # key: value
+    # machineDeploymentAnnotations:
+      # key: value
+    # rollingUpdate:
+      # maxUnavailable: 1
+      # maxSurge: 1
+    # cloud provider values here
     # accessKey: # only needed if not using cloudCredentialSecretName
     # secretKey: # only needed if not using cloudCredentialSecretName
     # sessionToken: # only needed if not using cloudCredentialSecretName
@@ -276,6 +292,7 @@ nodepools:
       - sudo mkdir -p /opt/rke2-artifacts/ /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
       - sudo useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U
   - name: worker-nodes
+    # displayName: wk-nodes
     quantity: 1
     etcd: false
     controlplane: false
@@ -283,8 +300,21 @@ nodepools:
     # labels:
       # key: value
     # taints:
+      # effect: value
       # key: value
+      # value: value
     paused: false
+    # drainBeforeDelete: true
+    # drainBeforeDeleteTimeout: 30s
+    # unhealthyNodeTimeout: 60s
+    # machineDeploymentLabels:
+      # key: value
+    # machineDeploymentAnnotations:
+      # key: value
+    # rollingUpdate:
+      # maxUnavailable: 1
+      # maxSurge: 1
+    # cloud provider values here
     # accessKey: # only needed if not using cloudCredentialSecretName
     # secretKey: # only needed if not using cloudCredentialSecretName
     # sessionToken: # only needed if not using cloudCredentialSecretName
