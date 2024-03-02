@@ -20,7 +20,7 @@ cluster:
   name: rke2-cluster-aws
   config:
     systemDefaultRegistry: rgcrprod.azurecr.us # default registry
-    kubernetesVersion: v1.25.16+rke2r1 # https://github.com/rancher/rke2/releases
+    kubernetesVersion: v1.27.10+rke2r1 # https://github.com/rancher/rke2/releases
     localClusterAuthEndpoint:
       enabled: false
     # agentEnvVars:
@@ -35,7 +35,7 @@ cluster:
     write_kubeconfig_mode: 0600
     use_service_account_credentials: true
     protect_kernel_defaults: true
-    cloud_provider_name: aws # aws, azure, harvester, vsphere
+    cloud_provider_name: '' # https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/set-up-cloud-providers
     # cloud_provider_config: '' # cloud provider config secret here (example: secret://fleet-default:cloudprovider)
     kube_controller_manager_arg: # (https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager)
       - bind-address=127.0.0.1
@@ -70,7 +70,7 @@ cluster:
       mirrors:
         - name: docker.io
           endpoints:
-            - rgcrprod.azurecr.us
+            - https://rgcrprod.azurecr.us
       # rewrite:
          # "^rancher/(.*)": "mirrorproject/rancher-images/$1"
     upgradeStrategy:
@@ -146,7 +146,7 @@ nodepools:
     keypairName: ''
     securityGroupReadonly: false
     sshKeyContents: ''
-    subnetId: subnet-05a19e0d0ef20ce2c # required (example: subnet-123456789)
+    subnetId: subnet-0bbc8070de43b774b # required (example: subnet-123456789)
     zone: a # required (example: a)
     monitoring: false
     usePrivateAddress: true
@@ -158,7 +158,7 @@ nodepools:
     rootSize: 128
     sshUser: ec2-user
     volumeType: gp3
-    vpcId: vpc-05067cd48b45a2f8f # required (example: vpc-123456789)
+    vpcId: vpc-05cc7d1e3b11a5625 # required (example: vpc-123456789)
     useEbsOptimizedInstance: false
     userData: |
       #cloud-config
@@ -337,7 +337,7 @@ nodepools:
     keypairName: ''
     securityGroupReadonly: false
     sshKeyContents: ''
-    subnetId: subnet-05a19e0d0ef20ce2c # required (example: subnet-123456789)
+    subnetId: subnet-0bbc8070de43b774b # required (example: subnet-123456789)
     zone: a # required (example: a)
     monitoring: false
     usePrivateAddress: true
@@ -349,7 +349,7 @@ nodepools:
     rootSize: 128
     sshUser: ec2-user
     volumeType: gp3
-    vpcId: vpc-05067cd48b45a2f8f # required (example: vpc-123456789)
+    vpcId: vpc-05cc7d1e3b11a5625 # required (example: vpc-123456789)
     useEbsOptimizedInstance: false
     userData: |
       #cloud-config
