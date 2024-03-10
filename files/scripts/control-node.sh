@@ -246,7 +246,7 @@ helm repo update
 
 kubectl create namespace cert-manager
 
-helm upgrade -i cert-manager jetstack/cert-manager -n cert-manager --version=$vCertManager --set installCRDs=true --set image.repository=$Registry/jetstack/cert-manager-controller --set webhook.image.repository=$Registry/jetstack/cert-manager-webhook --set cainjector.image.repository=$Registry/jetstack/cert-manager-cainjector --set acmesolver.image.repository=$Registry/jetstack/cert-manager-acmesolver --set startupapicheck.image.repository=$Registry/jetstack/cert-manager-ctl
+helm upgrade -i cert-manager jetstack/cert-manager -n cert-manager --version=$vCertManager --set installCRDs=true --set image.repository=$Registry/jetstack/cert-manager-controller --set webhook.image.repository=$Registry/jetstack/cert-manager-webhook --set cainjector.image.repository=$Registry/jetstack/cert-manager-cainjector --set acmesolver.image.repository=$Registry/jetstack/cert-manager-acmesolver --set startupapicheck.image.repository=$Registry/jetstack/cert-manager-startupapicheck
 
 sleep 15
 
